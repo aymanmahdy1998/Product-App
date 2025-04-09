@@ -1,0 +1,74 @@
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+  <div class="card shadow-lg border-0 rounded-3 p-4" style="width: 400px;">
+    <h3 class="text-center mb-3">Register</h3>
+
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+      <div class="mb-3">
+        <label class="form-label fw-bold">Name</label>
+        <input type="text" class="form-control" formControlName="name">
+        @if (submitted && registerForm.controls['name'].errors?.['required']) {
+          <small class="text-danger mb-2 d-block">Name is required.</small>
+        }
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label fw-bold">Email</label>
+        <input type="email" class="form-control" formControlName="email">
+        @if (submitted && registerForm.controls['email'].errors?.['required']) {
+          <small class="text-danger mb-2 d-block">Email is required.</small>
+        }
+        @if (submitted && registerForm.controls['email'].errors?.['email']) {
+          <small class="text-danger mb-2 d-block">Enter a valid email address.</small>
+        }
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label fw-bold">User Name</label>
+        <input type="text" class="form-control" formControlName="username">
+        @if (submitted && registerForm.controls['username'].errors?.['required']) {
+          <small class="text-danger mb-2 d-block">Username is required.</small>
+        }
+        @if (submitted && registerForm.controls['username'].errors?.['pattern']) {
+          <small class="text-danger mb-2 d-block">Username cannot contain spaces.</small>
+        }
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label fw-bold">Password</label>
+        <input type="password" class="form-control" formControlName="password">
+        @if (submitted && registerForm.controls['password'].errors?.['required']) {
+          <small class="text-danger mb-2 d-block">Password is required.</small>
+        }
+        @else if (submitted && registerForm.controls['password'].errors?.['minlength']) {
+          <small class="text-danger mb-2 d-block">Password must be at least 8 characters long.</small>
+        }
+        @else if (submitted && registerForm.controls['password'].errors?.['pattern']) {
+          <small class="text-danger mb-2 d-block">
+            Password must include at least:
+            1 uppercase, 1 lowercase, 1 number, and 1 special character.
+          </small>
+        }
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label fw-bold">Confirm Password</label>
+        <input type="password" class="form-control" formControlName="confirmPassword">
+        @if (submitted && registerForm.controls['confirmPassword'].errors?.['required']) {
+          <small class="text-danger mb-2 d-block">Confirm Password is required.</small>
+        }
+        @else if (submitted && registerForm.errors?.['mismatch']) {
+          <small class="text-danger mb-2 d-block">Passwords do not match.</small>
+        }
+      </div>
+
+      <button type="submit" class="btn btn-success w-100 py-2 fs-6" [disabled]="submitted && registerForm.invalid">
+        Register
+      </button>
+
+      <p class="text-center mt-3">
+        Already have an account? <a routerLink="/login" class="text-decoration-none fw-bold text-primary">login</a>
+      </p>
+    </form>
+  </div>
+</div>

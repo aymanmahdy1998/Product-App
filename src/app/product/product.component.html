@@ -1,0 +1,33 @@
+<div class="container mt-4">
+
+    <h6 class="mb-5">Welcome to our shopping website , start browsing...</h6>
+    <div class="row row-cols-1 row-cols-md-4  g-4">
+      @for (product of products; track product.id) {
+        <div class="col-md-4">
+        <app-productcard [product] ="product"></app-productcard>
+      </div>
+      }
+    </div>
+
+  <nav aria-label="Page navigation" class="mt-5 mb-4">
+    <ul class="pagination justify-content-center">
+      <li class="page-item" [class.disabled]="page === 1">
+        <a class="page-link btn btn-success  text-black" (click)="prevPage()">Previous</a>
+      </li>
+      <li  aria-current="page">
+        <span class="page-link">
+          Page {{ page }}
+        </span>
+      </li>
+      <li class="page-item">
+        <a class="page-link btn btn-success text-black" (click)="nextPage()">Next</a>
+      </li>
+    </ul>
+  </nav>
+
+
+
+
+
+
+</div>

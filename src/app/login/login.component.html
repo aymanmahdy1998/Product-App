@@ -1,0 +1,42 @@
+<div class="container vh-100 d-flex justify-content-center align-items-center">
+  <div class="card shadow-lg border-0 rounded-3 p-4" style="width: 400px; height: 480px;">
+    <h3 class="text-center mb-3">Login</h3>
+
+    <form #loginForm="ngForm" (ngSubmit)="onLogin(loginForm)">
+      <div class="mb-3">
+        <label for="email" class="form-label fw-bold">Email Address</label>
+        <input
+          required minlength="3"
+          ngModel #email="ngModel"
+          type="email" id="email" name="email"
+          class="form-control"
+          pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$">
+
+        @if (submitted && email?.invalid) {
+          <small class="text-danger mb-2 d-block">Please enter a valid email address.</small>
+        }
+      </div>
+
+      <div class="mb-3">
+        <label for="password" class="form-label fw-bold">Password</label>
+        <input
+          required
+          ngModel #password="ngModel"
+          type="password" id="password" name="password"
+          class="form-control">
+
+        @if (submitted && password?.invalid) {
+          <small class="text-danger mb-2 d-block">Password is required.</small>
+        }
+      </div>
+
+      <button type="submit" class="btn btn-primary w-100 py-2 fs-6" [disabled]="submitted && loginForm.invalid">
+        Login
+      </button>
+
+      <p class="text-center mt-3">
+        Don't have an account? <a routerLink="/register" class="text-decoration-none fw-bold text-primary">Register</a>
+      </p>
+    </form>
+  </div>
+</div>

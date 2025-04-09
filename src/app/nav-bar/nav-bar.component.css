@@ -1,0 +1,14 @@
+.active-link {
+    color: orange !important;
+    font-weight: bold;
+    border-bottom: 2px solid orange;
+  }
+
+
+  .small-badge {
+    font-size: 15px;
+    padding: 2px 5px;
+    min-width: 18px;
+    height: 18px;
+    line-height: 14px; 
+  }
